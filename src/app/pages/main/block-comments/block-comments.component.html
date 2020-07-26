@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Project Comments
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="container">
+    <div
+      class="message-item"
+      [ngClass]="{ start: !(isMyMessage$(msg) | async) }"
+      *ngFor="let msg of data$ | async"
+    >
+      <div class="message-avatar">
+        <ng-container *ngIf="msg.userId == 0; else userAvatar">
+          <span class="message-avatar-text">A</span>
+        </ng-container>
+        <ng-template #userAvatar>
+          <img class="user-img" [src]="msg.photoURL" alt="" src="" />
+        </ng-template>
+      </div>
+      <div class="message">
+        <div class="from">
+          {{ msg.displayName }}
+        </div>
+        <div class="content">
+          <span>
+            {{ msg.message }}
+          </span>
+        </div>
+        <div class="time">
+          {{ msg.timestamp | date: "HH:mm:ss" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer no-border *ngIf="auth.user$ | async">
+  <div class="input-wrap">
+    <textarea
+      placeholder="Enter your message!"
+      [formControl]="chatInput"
+      (keyup.enter)="sendMessage()"
+    >
+    </textarea>
+    <ion-button shape="round" (click)="sendMessage()">
+      <ion-icon slot="icon-only" name="send-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-footer>

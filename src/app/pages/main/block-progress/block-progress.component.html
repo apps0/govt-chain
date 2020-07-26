@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Progress Tracker
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="data$ | async as d">
+    <ion-list lines="inset">
+      <ion-list-header>
+        <h1>{{ d.project.name }}</h1>
+      </ion-list-header>
+
+      <ion-item *ngIf="!d.progress || d.progress.length == 0">
+        No Progress updated yet.
+      </ion-item>
+      <ion-item *ngFor="let data of d.progress">
+        <ion-avatar slot="start">
+          <img src="/assets/images/icon-project.jpg" />
+        </ion-avatar>
+        <ion-label>
+          <p>{{ data.description }}</p>
+        </ion-label>
+        <ion-button (click)="onDownload(data)">
+          Download
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-fab
+      vertical="bottom"
+      horizontal="end"
+      slot="fixed"
+      *ngIf="
+        (auth.isApprovedContractor$ | async) &&
+        (auth.user$ | async)?.id == d.project.contractorId
+      "
+    >
+      <ion-fab-button (click)="openProgressForm(d.project)">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ng-container>
+</ion-content>

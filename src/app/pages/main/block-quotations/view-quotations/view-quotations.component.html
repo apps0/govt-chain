@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Quotations
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onMineFilter($event)">
+        <ion-icon
+          slot="icon-only"
+          ios="ellipsis-horizontal"
+          md="ellipsis-vertical"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment
+      (ionChange)="onSegment($event.detail.value)"
+      [value]="activeStatus"
+    >
+      <ion-segment-button value="new">
+        <ion-label>New</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="approved">
+        <ion-label>Approved</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="rejected">
+        <ion-label>Rejected</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="inset">
+    <ion-card *ngFor="let data of data$ | async">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="/assets/images/icon-quotation.jpg" />
+        </ion-avatar>
+        <ion-label text-wrap>
+          <ion-text color="primary">
+            <h3>{{ data.projectName }}</h3>
+          </ion-text>
+        </ion-label>
+        <ion-button (click)="onDownload(data)">
+          Download
+        </ion-button>
+        <ion-button (click)="onView(data)">
+          View
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>
+          <p>Contractor: {{ data.contractorName }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="(auth.isAdmin$ | async) && data.status == 'new'">
+        <ion-button (click)="onApprove(data)" color="success">
+          Approve
+        </ion-button>
+        <ion-button (click)="onReject(data.id)" color="danger">
+          Reject
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

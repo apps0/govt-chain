@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button fill="solid" (click)="onClose()" color="light" fill="outline">
+        Back
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Progress Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <form [formGroup]="createForm" novalidate autocomplete="off">
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>DESCRIPTION</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-textarea
+          formControlName="description"
+          placeholder="Enter more information here..."
+        ></ion-textarea>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>ATTACH DOCUMENTS</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <input type="file" (change)="setFileData($event.target.files[0])" />
+      </ion-item>
+      <ion-button expand="full" (click)="onSubmit()">Submit</ion-button>
+    </form>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button fill="solid" (click)="onClose()" color="light" fill="outline">
+        Back
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content scrollX="true" scrollY="true">
+  <ngx-datatable
+    class="material fullscreen"
+    [headerHeight]="50"
+    [footerHeight]="0"
+    [rowHeight]="50"
+    [scrollbarV]="true"
+    [scrollbarH]="true"
+    [rows]="rows"
+    [columns]="columns"
+    [sortType]="sortType"
+    [columnMode]="columnMode"
+    rowHeight="auto"
+    [limit]="10"
+  >
+  </ngx-datatable>
+</ion-content>

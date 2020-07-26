@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Registration</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        fill="solid"
+        (click)="onSubmit()"
+        color="light"
+        fill="outline"
+      >
+        Confirm
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <form [formGroup]="createForm" novalidate>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>FULL NAME</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input
+          formControlName="name"
+          type="text"
+          placeholder="John Gregory"
+        ></ion-input>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>EMAIL ID</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input
+          formControlName="email"
+          type="text"
+          placeholder="join@doc.com"
+        ></ion-input>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>PHONE NUMBER</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input
+          formControlName="phoneNumber"
+          type="text"
+          placeholder="0000000000"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>Are you a contractor?</h2>
+          </ion-text>
+        </ion-label>
+        <ion-checkbox slot="end" formControlName="contractor"></ion-checkbox>
+      </ion-item>
+      <ng-container *ngIf="createForm.get('contractor').value">
+        <ion-item-divider>
+          <ion-label>
+            <ion-text color="primary">
+              <h2>LICENSE NO.</h2>
+            </ion-text>
+          </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-input
+            formControlName="licenseNo"
+            type="text"
+            placeholder="XYKO1934"
+          ></ion-input>
+        </ion-item>
+        <ion-item-divider>
+          <ion-label>
+            <ion-text color="primary">
+              <h2>ADDRESS</h2>
+            </ion-text>
+          </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-textarea
+            formControlName="addressLines"
+            type="text"
+            placeholder="Enter your address here"
+          ></ion-textarea>
+        </ion-item>
+      </ng-container>
+    </form>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Contractors
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment
+      (ionChange)="onSegment($event.detail.value)"
+      [value]="activeStatus"
+    >
+      <ion-segment-button value="new">
+        <ion-label>New</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="approved">
+        <ion-label>Approved</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="rejected">
+        <ion-label>Rejected</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="inset">
+    <ion-card *ngFor="let data of data$ | async">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="/assets/images/icon-contractor.png" />
+        </ion-avatar>
+        <ion-label text-wrap>
+          <ion-text color="primary">
+            <h3>License:{{ data.licenseNo }}</h3>
+          </ion-text>
+          <p>Name: {{ data.name }}</p>
+          <p>Email: {{ data.email }}</p>
+          <p>Phonenumber: {{ data.phoneNumber }}</p>
+          <p>Address: {{ data.addressLines }}</p>
+        </ion-label>
+        <ion-chip
+          slot="end"
+          [color]="
+            data.status == 'approved'
+              ? 'success'
+              : data.status == 'new'
+              ? 'primary'
+              : 'danger'
+          "
+        >
+          <ion-label color="dark">{{ data.status }}</ion-label>
+        </ion-chip>
+      </ion-item>
+      <ion-item *ngIf="data.status == 'new' && auth.isAdmin$ | async">
+        <ion-button (click)="onApprove(data.id)" color="success">
+          Approve
+        </ion-button>
+        <ion-button (click)="onReject(data.id)" color="danger">
+          Reject
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

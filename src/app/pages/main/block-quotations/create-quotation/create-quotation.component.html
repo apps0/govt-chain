@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Quotations Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="createForm" novalidate autocomplete="off">
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>PROJECT NAME</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>{{ createForm.get("projectName").value }}</ion-label>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>ATTACH QUOTATION</h2>
+          </ion-text>
+        </ion-label>
+        <ion-button slot="end" (click)="onFileView()">View</ion-button>
+      </ion-item-divider>
+      <ion-item>
+        <input type="file" (change)="setFileData($event.target.files[0])" />
+      </ion-item>
+      <ion-button expand="full" (click)="onSubmit()">Submit</ion-button>
+    </form>
+  </ion-list>
+</ion-content>

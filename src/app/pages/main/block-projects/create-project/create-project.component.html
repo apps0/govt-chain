@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Project Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="createForm" novalidate autocomplete="off">
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>NAME</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-input
+          formControlName="name"
+          type="text"
+          placeholder="Type the name here"
+        ></ion-input>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>Description</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-textarea
+          formControlName="description"
+          type="text"
+          placeholder="Type the description here"
+        ></ion-textarea>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>FUND</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-select
+          class="w-100"
+          value="Fund 1"
+          okText="Okay"
+          cancelText="Dismiss"
+          formControlName="fund"
+        >
+          <ion-select-option value="">Select Fund </ion-select-option>
+          <ion-select-option value="Fund 1">Fund 1</ion-select-option>
+          <ion-select-option value="Fund 2">Fund 2</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="full" (click)="onSubmit()">Submit</ion-button>
+    </form>
+  </ion-list>
+</ion-content>

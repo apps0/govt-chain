@@ -1,0 +1,14 @@
+<ion-list>
+  <ion-item
+    button
+    [color]="activeFilter == 'all' ? 'primary' : 'light'"
+    (click)="onOptions('all')"
+    >All</ion-item
+  >
+  <ion-item
+    button
+    [color]="activeFilter == 'mine' ? 'primary' : 'light'"
+    (click)="onOptions('mine')"
+    >Mine</ion-item
+  >
+</ion-list>

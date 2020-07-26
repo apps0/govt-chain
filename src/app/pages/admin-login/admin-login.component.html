@@ -1,0 +1,30 @@
+<ion-content class="content-container">
+  <div class="logo-wrapper">
+    <div id="logocontainer">
+      <div id="pelogo">Gc</div>
+      <div class="logo-sub">Admin</div>
+    </div>
+  </div>
+
+  <ion-card>
+    <form [formGroup]="createForm" novalidate>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Username"
+          formControlName="username"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        ></ion-input>
+      </ion-item>
+      <ion-button color="light" expand="block" (click)="onLogin()">
+        Login
+      </ion-button>
+    </form>
+  </ion-card>
+</ion-content>

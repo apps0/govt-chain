@@ -77,7 +77,7 @@ export class BlockProgressComponent implements OnInit {
     try {
       let j = document.createElement("a");
       j.id = "download";
-      j.download = `quotation_${_data.id}_${Date.now()}.csv`;
+      j.download = `progress_${_data.id}_${Date.now()}.csv`;
       j.href = URL.createObjectURL(
         new Blob([await this.ipfsService.fetch(_data.fileHash)], {
           type: "text/csv",

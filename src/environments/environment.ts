@@ -2,13 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { FIREBASE_CONFIG } from "firebase";
+import { FIREBASE_CONFIG } from '../../firebase';
 import { networks } from "../../truffle/truffle-config";
 
 export const environment = {
   production: false,
   firebase: FIREBASE_CONFIG,
   blockchain: `${networks.development.host}:${networks.development.port}`,
+  // blockchain:"8f45932ae5ab.ngrok.io"
 };
 
 /*

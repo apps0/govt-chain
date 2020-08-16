@@ -3,7 +3,7 @@
     <ion-title>
       Quotations
     </ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="(auth.isContractor$ | async)">
       <ion-button (click)="onMineFilter($event)">
         <ion-icon
           slot="icon-only"

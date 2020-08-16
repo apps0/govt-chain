@@ -85,7 +85,9 @@ export class BlockCommentsComponent implements OnDestroy {
     console.log("loadDatas", datas);
 
     this.data$.next(datas);
-    this.cd.markForCheck();
+    setTimeout(() => {
+      this.cd.markForCheck();
+    });
   }
 
   async sendMessage() {

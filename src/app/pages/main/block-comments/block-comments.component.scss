@@ -70,7 +70,7 @@ ion-content .scroll-content {
     align-self: flex-end;
     border-radius: 7.5px;
     box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
-    max-width: 65%;
+    max-width: 85%;
     font-size: 14.2px;
     line-height: 19px;
     color: #262626;
@@ -100,6 +100,7 @@ ion-content .scroll-content {
       }
     }
     .message {
+        flex:1;
       padding: 6px 7px 8px 9px;
       .from {
         color: #444 !important;

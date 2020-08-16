@@ -50,7 +50,7 @@ export class Web3Service {
           Web3.providers.HttpProvider.prototype.send;
         // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
         this.web3 = new Web3(
-          // new Web3.providers.HttpProvider("http://192.168.101.44:7545")
+          // new Web3.providers.HttpProvider(`https://${environment.blockchain}`)
           new Web3.providers.WebsocketProvider(`ws://${environment.blockchain}`)
         );
       }

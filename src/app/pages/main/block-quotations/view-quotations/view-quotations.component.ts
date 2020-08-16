@@ -57,7 +57,6 @@ export class ViewQuotationsComponent implements OnInit {
   }
 
   async loadDatas() {
-    console.log("loadDatas", status);
     let datas: any = await this.quotationsService.quotations$
       .pipe(take(1))
       .toPromise();
@@ -66,11 +65,15 @@ export class ViewQuotationsComponent implements OnInit {
     // filter data by segment
     datas = datas.filter((x) => x.status === this.activeStatus);
 
+    console.log("loadDatas1", datas);
     // filter by user
     if (this.activeFilter == "mine") {
       let user = await this.auth.user$.pipe(take(1)).toPromise();
-      datas = datas.filter((x) => x.contractorId === user.id);
+      if (user) {
+        datas = datas.filter((x) => x.contractorId === user.id);
+      }
     }
+    console.log("loadDatas2", datas);
 
     this.data$.next(datas);
   }
